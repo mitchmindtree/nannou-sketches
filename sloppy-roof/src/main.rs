@@ -78,7 +78,7 @@ fn event(app: &App, model: &mut Model, event: Event) {
     }
 }
 
-fn view(app: &App, model: &Model, frame: Frame) -> Frame {
+fn view(app: &App, model: &Model, frame: &Frame) {
     // Prepare to draw.
     let draw = app.draw();
     let win = app.window_rect();
@@ -119,7 +119,4 @@ fn view(app: &App, model: &Model, frame: Frame) -> Frame {
 
     // Write to the window frame.
     draw.to_frame(app, &frame).unwrap();
-
-    // Return the drawn frame.
-    frame
 }

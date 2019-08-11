@@ -11,8 +11,5 @@ members = [
     "uppity-parcel",
 ]
 
-[replace]
-"vulkano:0.11.1" = { git = "https://github.com/mitchmindtree/vulkano", branch = "nannou_patches" }
-
 [profile.release]
 debug = true

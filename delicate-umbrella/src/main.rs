@@ -6,7 +6,7 @@ fn main() {
     nannou::sketch(view);
 }
 
-fn view(app: &App, frame: Frame) -> Frame {
+fn view(app: &App, frame: &Frame) {
     // Prepare to draw.
     let draw = app.draw();
     let win = app.window_rect();
@@ -19,7 +19,7 @@ fn view(app: &App, frame: Frame) -> Frame {
     let n = ((0.1 * t * 2.0 * PI).sin() * 100.0 + 100.0) as usize;
     //let n = 100;
     for i in 0..n {
-        let f = i as f32 / n as f32; 
+        let f = i as f32 / n as f32;
         let max_thickness = (1.0 / n as f32) * win.w();
         let x = win.x.lerp(f);
         let hz = 0.125;
@@ -48,7 +48,4 @@ fn view(app: &App, frame: Frame) -> Frame {
 
     // Write to the window frame.
     draw.to_frame(app, &frame).unwrap();
-
-    // Return the drawn frame.
-    frame
 }

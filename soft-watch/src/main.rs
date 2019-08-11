@@ -3,7 +3,7 @@ extern crate nannou;
 
 use jen_rx::Instrument::*;
 use jen_rx::Measure::*;
-use nannou::osc;
+use nannou_osc as osc;
 use nannou::prelude::*;
 
 fn main() {
@@ -36,7 +36,7 @@ fn transient(model: &Model, inst: jen_rx::Instrument, secs: f64) -> f32 {
     }
 }
 
-fn view(app: &App, model: &Model, frame: Frame) -> Frame {
+fn view(app: &App, model: &Model, frame: &Frame) {
     let kick = transient(model, Kick, 0.2).powf(2.0);
     let snare = transient(model, Snare, 0.3).powf(0.6);
     let ghost = transient(model, Ghost, 0.032);
@@ -78,6 +78,4 @@ fn view(app: &App, model: &Model, frame: Frame) -> Frame {
         .hsl(0.3 + semi_q*0.2, 0.5, 0.6*ghost);
 
     draw.to_frame(app, &frame).unwrap();
-
-    frame
 }

@@ -4,4 +4,4 @@ version = "0.1.0"
 authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
 
 [dependencies]
-nannou = { git = "https://github.com/nannou-org/nannou", branch = "v0.9" }
+nannou = "0.10"

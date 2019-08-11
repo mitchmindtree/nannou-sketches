@@ -144,7 +144,7 @@ fn u(draw: &app::Draw, t: f32, r: &Rect) {
 // View //
 //////////
 
-fn view(app: &App, frame: Frame) -> Frame {
+fn view(app: &App, frame: &Frame) {
     // Prepare to draw.
     let draw = app.draw();
     let win = app.window_rect();
@@ -183,7 +183,4 @@ fn view(app: &App, frame: Frame) -> Frame {
 
     // Write to the window frame.
     draw.to_frame(app, &frame).unwrap();
-
-    // Return the drawn frame.
-    frame
 }

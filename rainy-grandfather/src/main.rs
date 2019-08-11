@@ -37,7 +37,7 @@ fn draw_subdivisions(
         .hsla(hue, sat, lum, 0.1 + (from_middle / 1_000.0).powi(2));
 }
 
-fn view(app: &App, frame: Frame) -> Frame {
+fn view(app: &App, frame: &Frame) {
     // Prepare to draw.
     let draw = app.draw();
 
@@ -54,7 +54,4 @@ fn view(app: &App, frame: Frame) -> Frame {
 
     // Write to the window frame.
     draw.to_frame(app, &frame).unwrap();
-
-    // Return the drawn frame.
-    frame
 }
