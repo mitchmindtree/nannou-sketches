@@ -4,4 +4,4 @@ version = "0.1.0"
 authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
 
 [dependencies]
-nannou = "0.10"
+nannou = "0.13"

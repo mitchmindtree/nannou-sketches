@@ -3,10 +3,10 @@ extern crate nannou;
 use nannou::prelude::*;
 
 fn main() {
-    nannou::sketch(view);
+    nannou::sketch(view).run();
 }
 
-fn view(app: &App, frame: &Frame) {
+fn view(app: &App, frame: Frame) {
     // Handy constants.
     let t = app.duration.since_start.secs() as f32;
     let win = app.window_rect();

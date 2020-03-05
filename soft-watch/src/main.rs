@@ -36,7 +36,7 @@ fn transient(model: &Model, inst: jen_rx::Instrument, secs: f64) -> f32 {
     }
 }
 
-fn view(app: &App, model: &Model, frame: &Frame) {
+fn view(app: &App, model: &Model, frame: Frame) {
     let kick = transient(model, Kick, 0.2).powf(2.0);
     let snare = transient(model, Snare, 0.3).powf(0.6);
     let ghost = transient(model, Ghost, 0.032);
@@ -70,11 +70,11 @@ fn view(app: &App, model: &Model, frame: &Frame) {
         .color(BLACK);
     draw.line()
         .points(pt2(-dist, 0.0), pt2(dist, 0.0))
-        .thickness(ghost * win_h * ((phrase * 4.0) % 1.0).powf(3.0))
+        .weight(ghost * win_h * ((phrase * 4.0) % 1.0).powf(3.0))
         .hsl(0.3 + semi_q*0.2, 0.5, 0.6*ghost);
     draw.line()
         .points(pt2(0.0, -dist), pt2(0.0, dist))
-        .thickness(kick * win_h * 0.25)
+        .weight(kick * win_h * 0.25)
         .hsl(0.3 + semi_q*0.2, 0.5, 0.6*ghost);
 
     draw.to_frame(app, &frame).unwrap();

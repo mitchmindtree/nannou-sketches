@@ -78,7 +78,7 @@ fn event(app: &App, model: &mut Model, event: Event) {
     }
 }
 
-fn view(app: &App, model: &Model, frame: &Frame) {
+fn view(app: &App, model: &Model, frame: Frame) {
     // Prepare to draw.
     let draw = app.draw();
     let win = app.window_rect();

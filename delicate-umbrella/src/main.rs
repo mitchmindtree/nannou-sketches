@@ -3,10 +3,10 @@ extern crate nannou;
 use nannou::prelude::*;
 
 fn main() {
-    nannou::sketch(view);
+    nannou::sketch(view).run();
 }
 
-fn view(app: &App, frame: &Frame) {
+fn view(app: &App, frame: Frame) {
     // Prepare to draw.
     let draw = app.draw();
     let win = app.window_rect();
@@ -20,13 +20,13 @@ fn view(app: &App, frame: &Frame) {
     //let n = 100;
     for i in 0..n {
         let f = i as f32 / n as f32;
-        let max_thickness = (1.0 / n as f32) * win.w();
+        let max_weight = (1.0 / n as f32) * win.w();
         let x = win.x.lerp(f);
         let hz = 0.125;
         let tx = (t * hz * 2.0 * PI).sin() * win.right();
         let d = (tx - x).abs();
         let dn = d / win.w();
-        let thickness = max_thickness * dn;
+        let weight = max_weight * dn;
         let hue = 1.0;
 
         // Linear.
@@ -41,7 +41,7 @@ fn view(app: &App, frame: &Frame) {
 
         //let hue = t * 0.1 + dn * 0.3;
         draw.line()
-            .thickness(thickness)
+            .weight(weight)
             .points(pa, pb)
             .hsla(hue, 1.0, 1.0, dn);
     }
