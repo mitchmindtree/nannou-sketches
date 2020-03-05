@@ -3,10 +3,10 @@ extern crate nannou;
 use nannou::prelude::*;
 
 fn main() {
-    nannou::sketch(view);
+    nannou::sketch(view).run();
 }
 
-fn view(app: &App, frame: &Frame) {
+fn view(app: &App, frame: Frame) {
     // Prepare to draw.
     let draw = app.draw();
 
@@ -39,7 +39,7 @@ fn view(app: &App, frame: &Frame) {
         let radius = f.powi(2) * tail_thick;
 
         draw.line()
-            .thickness(3.0)
+            .weight(3.0)
             .points(start, end)
             .hsla(hue, sat, lum, a);
 

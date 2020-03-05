@@ -4,7 +4,7 @@ use nannou::app;
 use nannou::prelude::*;
 
 fn main() {
-    nannou::sketch(view);
+    nannou::sketch(view).run();
 }
 
 const DEPTH: usize = 7;
@@ -37,7 +37,7 @@ fn draw_subdivisions(
         .hsla(hue, sat, lum, 0.1 + (from_middle / 1_000.0).powi(2));
 }
 
-fn view(app: &App, frame: &Frame) {
+fn view(app: &App, frame: Frame) {
     // Prepare to draw.
     let draw = app.draw();
 

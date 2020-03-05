@@ -6,5 +6,5 @@ edition = "2018"
 
 [dependencies]
 jen_rx = { git = "https://github.com/mitchmindtree/jen_rx", branch = "master" }
-nannou = "0.10"
+nannou = "0.13"
 nannou_osc = "0.1"

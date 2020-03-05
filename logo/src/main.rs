@@ -1,11 +1,10 @@
 extern crate nannou;
 
 use nannou::app;
-use nannou::geom::Range;
 use nannou::prelude::*;
 
 fn main() {
-    nannou::sketch(view);
+    nannou::sketch(view).run();
 }
 
 const RADIUS: f32 = 100.0;
@@ -51,7 +50,7 @@ fn lines(draw: &app::Draw, t: f32, ls: &[(Point2<f32>, Point2<f32>)]) {
         draw.line()
             .points(pa, pb)
             .hsla(h, 1.0, l, a)
-            .thickness(LINE_THICKNESS);
+            .weight(LINE_THICKNESS);
     }
 }
 
@@ -144,7 +143,7 @@ fn u(draw: &app::Draw, t: f32, r: &Rect) {
 // View //
 //////////
 
-fn view(app: &App, frame: &Frame) {
+fn view(app: &App, frame: Frame) {
     // Prepare to draw.
     let draw = app.draw();
     let win = app.window_rect();
