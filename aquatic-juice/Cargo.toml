@@ -1,7 +1,8 @@
 [package]
 name = "aquatic-juice"
+edition = "2021"
 version = "0.1.0"
 authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
 
 [dependencies]
-nannou = "0.13"
+nannou = "0.18"

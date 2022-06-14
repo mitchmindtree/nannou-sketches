@@ -33,10 +33,12 @@ fn view(app: &App, frame: Frame) {
         let hue = (t + f * 3.0) % 1.0;
         let sat = 0.5;
         let lum = 0.5;
-        draw.ellipse()
-            .resolution(200)
-            .radius(rad)
-            .hsla(hue, sat, lum, a_fade_in.powi(i) * a * a_fade_out);
+        draw.ellipse().resolution(200.0).radius(rad).hsla(
+            hue,
+            sat,
+            lum,
+            a_fade_in.powi(i) * a * a_fade_out,
+        );
     }
 
     // Weird squares in the middle.
@@ -56,10 +58,7 @@ fn view(app: &App, frame: Frame) {
             let sat = 0.5;
             let lum = 0.5;
             let a = 1.0;
-            draw.rect()
-                .xy(p)
-                .wh(r.wh())
-                .hsla(hue, sat, lum, a);
+            draw.rect().xy(p).wh(r.wh()).hsla(hue, sat, lum, a);
         }
     }
 

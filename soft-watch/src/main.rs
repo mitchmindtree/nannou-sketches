@@ -1,10 +1,7 @@
-extern crate jen_rx;
-extern crate nannou;
-
 use jen_rx::Instrument::*;
 use jen_rx::Measure::*;
-use nannou_osc as osc;
 use nannou::prelude::*;
+use nannou_osc as osc;
 
 fn main() {
     nannou::app(model).update(update).simple_window(view).run();
@@ -55,27 +52,27 @@ fn view(app: &App, model: &Model, frame: Frame) {
     draw.rect()
         .w(snare * win_w)
         .h(snare * win_h)
-        .rotate(((phrase*4.0)%1.0) * TAU)
-        .hsl(0.6 + phrase*0.2, 0.5, snare);
+        .rotate(((phrase * 4.0) % 1.0) * TAU)
+        .hsl(0.6 + phrase * 0.2, 0.5, snare);
     draw.ellipse()
-        .w(kick * win_w * ((phrase*2.0)%1.0).powf(0.5))
-        .h(kick * win_h * ((phrase*2.0)%1.0).powf(0.5))
-        .resolution(100)
-        .hsl(bar*0.2, 0.5, kick);
-    let dist = (win_w*0.125 + win_w*0.875*phrase)*0.5;
+        .w(kick * win_w * ((phrase * 2.0) % 1.0).powf(0.5))
+        .h(kick * win_h * ((phrase * 2.0) % 1.0).powf(0.5))
+        .resolution(100.0)
+        .hsl(bar * 0.2, 0.5, kick);
+    let dist = (win_w * 0.125 + win_w * 0.875 * phrase) * 0.5;
     draw.ellipse()
         .rotate(bar * TAU)
-        .resolution(3)
-        .wh([beat*win_h*0.5; 2].into())
+        .resolution(3.0)
+        .wh([beat * win_h * 0.5; 2].into())
         .color(BLACK);
     draw.line()
         .points(pt2(-dist, 0.0), pt2(dist, 0.0))
         .weight(ghost * win_h * ((phrase * 4.0) % 1.0).powf(3.0))
-        .hsl(0.3 + semi_q*0.2, 0.5, 0.6*ghost);
+        .hsl(0.3 + semi_q * 0.2, 0.5, 0.6 * ghost);
     draw.line()
         .points(pt2(0.0, -dist), pt2(0.0, dist))
         .weight(kick * win_h * 0.25)
-        .hsl(0.3 + semi_q*0.2, 0.5, 0.6*ghost);
+        .hsl(0.3 + semi_q * 0.2, 0.5, 0.6 * ghost);
 
     draw.to_frame(app, &frame).unwrap();
 }

@@ -1,6 +1,3 @@
-extern crate nannou;
-
-use nannou::app;
 use nannou::prelude::*;
 
 fn main() {
@@ -9,13 +6,7 @@ fn main() {
 
 const DEPTH: usize = 7;
 
-fn draw_subdivisions(
-    draw: &app::Draw,
-    r: Rect,
-    depth: usize,
-    t: f32,
-    hue_hz: f32,
-) {
+fn draw_subdivisions(draw: &Draw, r: Rect, depth: usize, t: f32, hue_hz: f32) {
     if depth > 0 {
         for r in r.subdivisions_iter() {
             draw_subdivisions(draw, r, depth - 1, t, hue_hz);
@@ -25,10 +16,14 @@ fn draw_subdivisions(
 
     let middle = pt2(0.0, 0.0);
     let from_middle = r.xy().distance(middle);
-    let moving_point = pt2(t.sin() * (300.0 * from_middle), t.cos() * (300.0 * from_middle));
+    let moving_point = pt2(
+        t.sin() * (300.0 * from_middle),
+        t.cos() * (300.0 * from_middle),
+    );
     let from_moving_point = r.xy().distance(moving_point);
     let hue_range = 0.3 * ((t * 0.07).sin() * 0.15) + 0.15;
-    let hue = (t * hue_hz + (from_middle / 1_000.0) + from_moving_point * 0.001) % hue_range + t * 0.01;
+    let hue =
+        (t * hue_hz + (from_middle / 1_000.0) + from_moving_point * 0.001) % hue_range + t * 0.01;
     let sat = (t * 0.25).sin() * 0.3 + 0.4;
     let lum = hue_range;
     draw.rect()

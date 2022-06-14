@@ -2,6 +2,7 @@
 name = "sloppy-roof"
 version = "0.1.0"
 authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
+edition = "2021"
 
 [dependencies]
-nannou = "0.13"
+nannou = "0.18"

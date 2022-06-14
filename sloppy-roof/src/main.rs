@@ -1,5 +1,3 @@
-extern crate nannou;
-
 use nannou::prelude::*;
 
 fn main() {
@@ -12,12 +10,12 @@ const CLOSEST: usize = STARS_PER_PATH / 10;
 
 struct Model {
     // The location of each star.
-    points: Vec<Point2<f32>>,
+    points: Vec<Point2>,
     // The path through the stars.
     path: Vec<usize>,
 }
 
-fn random_star_points(win: Rect) -> Vec<Point2<f32>> {
+fn random_star_points(win: Rect) -> Vec<Point2> {
     let w = win.w();
     let h = win.h();
     let n_stars = (w * h / (STARS_PER_100_PIXELS as f32).powi(2)) as usize * STARS_PER_100_PIXELS;
@@ -28,19 +26,22 @@ fn random_star_points(win: Rect) -> Vec<Point2<f32>> {
             let coord = || {
                 let v: f32 = random();
                 let sign: bool = random();
-                if sign { v } else { -v }
+                if sign {
+                    v
+                } else {
+                    -v
+                }
             };
             pt2(coord() * half_w, coord() * half_h)
         })
         .collect()
 }
 
-fn distance_order(origin: Point2<f32>, a: Point2<f32>, b: Point2<f32>) -> std::cmp::Ordering {
-    origin.distance2(a).partial_cmp(&origin.distance2(b)).unwrap()
+fn distance_order(origin: Point2, a: Point2, b: Point2) -> std::cmp::Ordering {
+    origin.distance(a).partial_cmp(&origin.distance(b)).unwrap()
 }
 
-fn random_star_path(points: &[Point2<f32>]) -> Vec<usize> {
-
+fn random_star_path(points: &[Point2]) -> Vec<usize> {
     let mut points_by_distance: Vec<_> = points.iter().cloned().enumerate().collect();
     let o = pt2(0.0, 0.0);
     points_by_distance.sort_by(|&(_, a), &(_, b)| distance_order(o, a, b));
@@ -63,18 +64,15 @@ fn model(app: &App) -> Model {
 }
 
 fn event(app: &App, model: &mut Model, event: Event) {
-    match event {
-        Event::WindowEvent { simple: Some(event), .. } => match event {
-            KeyPressed(_) | Resized(..) => {
-                let points = random_star_points(app.window_rect());
-                let path = random_star_path(&points);
-                model.points = points;
-                model.path = path;
-            },
-            _other => (),
-        },
-
-        _ => (),
+    if let Event::WindowEvent {
+        simple: Some(KeyPressed(_) | Resized(..)),
+        ..
+    } = event
+    {
+        let points = random_star_points(app.window_rect());
+        let path = random_star_path(&points);
+        model.points = points;
+        model.path = path;
     }
 }
 
@@ -95,9 +93,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
             let start = model.points[a];
             let end = model.points[b];
             let a = (t + i as f32 * 0.2).sin().max(0.0).powi(6);
-            draw.line()
-                .points(start, end)
-                .hsla(1.0, 1.0, 1.0, a);
+            draw.line().points(start, end).hsla(1.0, 1.0, 1.0, a);
             i += 1;
         }
     }
@@ -110,7 +106,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
         let r = i_f % 2.0 % 1.0;
         let h = (x_f + i_f + t * 0.2) % 1.0;
         draw.ellipse()
-            .resolution(8)
+            .resolution(8.0)
             //.radius(1.0)
             .radius(r)
             .xy(p)
