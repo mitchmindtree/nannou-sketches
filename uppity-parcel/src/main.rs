@@ -1,5 +1,3 @@
-extern crate nannou;
-
 use nannou::prelude::*;
 
 fn main() {
@@ -16,10 +14,8 @@ fn view(app: &App, frame: Frame) {
 
     // Clear the background to pink.
     let strobe_hz = (t * 0.05).sin() * 10.0;
-    let bg = ((t * 2.0 * PI * strobe_hz).sin() * 0.5 + 0.5).powi(4);//.round();
-    draw.rect()
-        .wh(win.wh())
-        .rgb(bg, bg, bg);
+    let bg = ((t * 2.0 * PI * strobe_hz).sin() * 0.5 + 0.5).powi(4); //.round();
+    draw.rect().wh(win.wh()).rgb(bg, bg, bg);
 
     let n_lines = 250;
     for i in 0..n_lines {

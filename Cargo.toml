@@ -10,6 +10,4 @@ members = [
     "soft-watch",
     "uppity-parcel",
 ]
-
-[profile.release]
-debug = true
+resolver="2" 

@@ -2,9 +2,9 @@
 name = "soft-watch"
 version = "0.1.0"
 authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 jen_rx = { git = "https://github.com/mitchmindtree/jen_rx", branch = "master" }
-nannou = "0.13"
-nannou_osc = "0.1"
+nannou = "0.18"
+nannou_osc = "0.18"
